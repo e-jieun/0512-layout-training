@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <section id="border-popup">
+      <ul>
+        <li>lorem ipsum</li>
+        <button>close</button>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, quod aliquid sed laboriosam est officiis beatae consequuntur temporibus alias sequi eveniet quaerat laborum totam ipsa iusto blanditiis, ullam rerum? Ratione!</li>
+      </ul>
+    </section>
+    <section id="simple-popup">
+      <ul>
+        <li>lorem ipsum</li>
+        <button>close</button>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, quod aliquid sed laboriosam est officiis beatae consequuntur temporibus alias sequi eveniet quaerat laborum totam ipsa iusto blanditiis, ullam rerum? Ratione!</li>
+      </ul>
+    </section>
+  </div>
+  <script>
+    // root select
+    const root = document.getElementById('root');
+    console.log(root);
+    // root style
+    root.setAttribute('style','width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;');
+
+    // #border-popup
+    const borderPop = root.children[0];
+    // #simple-popup
+    const simplePop = root.children[1]
+    console.log(borderPop);
+    console.log(simplePop);
+    for(let i = 0; i < root.children.length; i++){
+      root.children[i].setAttribute('style',`position: absolute; width: 30vw; height: 50vw;`);
+      root.children[0].setAttribute('style',`position: absolute; z-index: 2; left: 30vw; width: 30vw; height: 50vw;`);
+      root.children[1].setAttribute('style',`position: absolute; width: 30vw; height: 50vw; filter: blur(2px);`);
+
+
+      const ul = root.children[i].children[0];
+      // !여기서 크기를 30vw로 정해둬서 오버플로우 되지 않았음
+      ul.setAttribute('style',`height: inherit; display: flex; flex-direction: column; list-style-type: none; padding-left: 0px; padding: 0px;`);
+      // !ul이 전체를 감싸도록 했으니까 ul에 줄 값이었는데 section에 부여하고 있었음
+      root.children[0].children[0].style.boxShadow = '0px 0px 10px black';
+      root.children[0].children[0].style.borderRadius = '20px';
+    }
+
+    const borderUl = borderPop.children[0];
+    const simpleUl = simplePop.children[0];
+    console.log(borderUl);
+    console.log(simpleUl);
+
+    const borderChild = borderUl.children;
+    for(let i = 0; i <borderChild.length; i++){
+      // borderChild[i].style.border = '1px solid black';
+      // title
+      borderChild[0].setAttribute('style','border: 1px solid black; padding: 2vh; font-size: 2rem; color: #fff; font-weight: 900; height: 50%; background: #329849; border-radius: 20px 20px 0px 0px;');
+      // button
+      borderChild[1].setAttribute('style','border: 1px solid black; height: 5vw; width: 10vw; position: absolute; top: 15vh; left: 10vh; background: black; border: 1px solid black; border-radius: 50px; font-size: 1.2rem; color: #fff; text-shadow: green 0px 0px 2px; box-shadow: 0px 0px 10px #c4c4c4;');
+      // bottom text
+      borderChild[2].setAttribute('style','border: 1px solid black; padding: 3vh; height: 50%; background: pink; font-size: 0.5rem; color: green; border-radius: 0px 0px 20px 20px;');
+      
+      borderChild[i].style.textAlign = 'center';
+      console.log(borderChild[i]);
+    }
+
+
+    const simpleChild = simpleUl.children;
+    console.log(simpleChild);
+
+
+
+
+
+  </script>
+</body>
+</html>
